@@ -3,7 +3,19 @@ import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 import NavBar from "../components/NavBar";
+import "./NavBar.css";  
 
+export default function Navbar () {
+  return (
+    <nav className="navbar">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/actors">Actors</a></li>
+        <li><a href="/directors">Directors</a></li>
+      </ul>
+    </nav>
+  );
+}
 let container;
 
 beforeEach(() => {

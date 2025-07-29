@@ -1,12 +1,21 @@
-span {
-    margin: 0px 2px;
+/* MovieCard.module.css */
+.card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  padding: 16px;
+  margin: 12px;
+  text-align: center;
 }
-
-article {
-    border: solid 1px;
-    border-radius: 5px;
-    margin: 5px;
-    max-width: 350px;
-    box-sizing: border-box;
-    padding: 5px;
+.title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #333;
+}
+/* Home.module.css */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  padding: 24px;
 }

@@ -1,16 +1,23 @@
-import { useEffect, useState } from "react";
+// pages/Home.js
 
-function Home() {
+import movies from "../data/movies";
+import actors from "../data/actors";
+import directors from "../data/directors";
+// Home.jsx
+
+import styles from './Home.module.css';
+import MovieCard from '../components/MovieCard';
+
+
+
+export default function Home() {
   return (
-    <>
-      <header>
-        {/* What component should go here? */}
-      </header>
-      <main>
-        {/* Info goes here! */}
-      </main>
-    </>
+    <section>
+      <h1>Home Page</h1>
+      {movies.map(movie => (
+        <MovieCard key={movie.id} movie={movie} />
+      ))}
+    </section>
   );
-};
-
-export default Home;
+}
+import React from 'react';
