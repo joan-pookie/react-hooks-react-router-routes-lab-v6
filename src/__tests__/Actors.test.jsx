@@ -1,7 +1,7 @@
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 import { RouterProvider, createMemoryRouter} from "react-router-dom";
-import routes from "../appRoutes.jsx";
+import {routes} from "../routes";
  console.log("Routes loaded :", routes) // Adjusted import to match the new file structure
 
 const actors = [

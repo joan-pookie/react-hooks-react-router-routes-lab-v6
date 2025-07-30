@@ -1,24 +1,36 @@
-import React from "react";
+// src/pages/Movie.jsx
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import movies from "../data/movies";
-import actors from "../data/actors";
-import directors from "../data/directors";
+import NavBar from "../components/NavBar";
 
-export default function Movie() {
+function Movie() {
   const { id } = useParams();
-  const movie = movies.find(m => String(m.id) === id);
+  const [movie, setMovie] = useState(null);
 
-  if (!movie) {
-    throw new Error("Movie not found");
-  }
+  useEffect(() => {
+    fetch(`http://localhost:4000/movies/${id}`)
+      .then((res) => res.json())
+      .then(setMovie);
+  }, [id]);
+
+  if (!movie) return <p>Loading...</p>;
 
   return (
-    <section>
-      <h1>{movie.title}</h1>
-      <p>Time: {movie.time}</p>
-      {movie.genres.map((g, idx) => (
-        <span key={idx}>{g}</span>
-      ))}
-    </section>
+    <>
+      <header>
+        <NavBar />
+      </header>
+      <main>
+        <h1>{movie.title}</h1>
+        <p>{movie.time} minutes</p>
+        <div>
+          {movie.genres.map((genre, index) => (
+            <span key={index}>{genre} </span>
+          ))}
+        </div>
+      </main>
+    </>
   );
 }
+
+export default Movie;

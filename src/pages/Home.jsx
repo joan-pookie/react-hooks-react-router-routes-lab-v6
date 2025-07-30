@@ -1,25 +1,35 @@
-import React from "react";
+// src/pages/Home.jsx
+import React, { useEffect, useState } from "react";
+import NavBar from "../components/NavBar";
 import MovieCard from "../components/MovieCard";
-import movies from "../data/movies";
-export default function Home({ movies = [] }) {
-   if (!movies || movies.length === 0) return <p>No movies available</p>;
+
+function Home() {
+  const [movies, setMovies] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:4000/movies")
+      .then((res) => res.json())
+      .then(setMovies);
+  }, []);
 
   return (
-    <section>
-      <h1>Home Page</h1>
-      {movies.length > 0 ? (
-        movies.map((movie) => (
-          <MovieCard
-            key={movie.id}
-            id={movie.id}
-            title={movie.title}
-            time={movie.time}
-            genres={movie.genres} // Must exist and be an array
-          />
-        ))
-      ) : (
-        <p>No movies available</p>
-      )}
-    </section>
+    <>
+      <header>
+        <NavBar />
+      </header>
+      <main>
+        <h1>Home Page</h1>
+        <div>
+          {movies.map((movie) => (
+            <div key={movie.id}>
+              <MovieCard movie={movie} />
+              <a href={`/movie/${movie.id}`}>View Info</a>
+            </div>
+          ))}
+        </div>
+      </main>
+    </>
   );
 }
+
+export default Home;

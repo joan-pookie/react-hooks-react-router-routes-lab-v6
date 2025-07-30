@@ -1,20 +1,36 @@
-// pages/Actors.js
-import actors from "../data/actors";
+// src/pages/Actors.jsx
+import React, { useEffect, useState } from "react";
+import NavBar from "../components/NavBar";
 
-export default function Actors() {
+function Actors() {
+  const [actors, setActors] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:4000/actors")
+      .then((res) => res.json())
+      .then(setActors);
+  }, []);
+
   return (
-    <section>
-      <h1>Actors Page</h1>
-      {actors.map(act => (
-        <article key={act.name}>
-          <h2>{act.name}</h2>
-          <ul>
-            {act.movies.map((m, idx) => (
-              <li key={idx}>{m}</li>
-            ))}
-          </ul>
-        </article>
-      ))}
-    </section>
+    <>
+      <header>
+        <NavBar />
+      </header>
+      <main>
+        <h1>Actors Page</h1>
+        {actors.map((actor) => (
+          <article key={actor.name}>
+            <h2>{actor.name}</h2>
+            <ul>
+              {actor.movies.map((movie, index) => (
+                <li key={index}>{movie}</li>
+              ))}
+            </ul>
+          </article>
+        ))}
+      </main>
+    </>
   );
 }
+
+export default Actors;
