@@ -7,7 +7,9 @@ export default function MovieCard({ id, title, time, genres }) {
     <div className={styles.card}>
       <h3>{title}</h3>
       <p>{time}</p>
-      <p>{genres.join(', ')}</p>
+    <p>{Array.isArray(genres) && genres.length > 0 
+        ? genres.join(", ") 
+        : "Genres not available"}</p>  
       <Link to={`/movie/${id}`}>View Details</Link>
     </div>
   );

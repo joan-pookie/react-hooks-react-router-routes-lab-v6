@@ -3,7 +3,7 @@ import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 import NavBar from "../components/NavBar";
-import "./NavBar.css";  
+import routes from "../appRoutes.jsx";
 
 export default function Navbar () {
   return (

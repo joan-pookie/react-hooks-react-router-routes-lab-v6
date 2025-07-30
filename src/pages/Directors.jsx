@@ -1,11 +1,11 @@
 // pages/Directors.js
 import directors from "../data/directors";
 
-export default function Directors() {
+function Directors() {
   return (
     <section>
       <h1>Directors Page</h1>
-      {directors.map(dir => (
+      {directors.map((dir) => (
         <article key={dir.name}>
           <h2>{dir.name}</h2>
           <ul>
@@ -18,3 +18,5 @@ export default function Directors() {
     </section>
   );
 }
+
+export default Directors;

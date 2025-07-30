@@ -1,23 +1,25 @@
-// pages/Home.js
-
+import React from "react";
+import MovieCard from "../components/MovieCard";
 import movies from "../data/movies";
-import actors from "../data/actors";
-import directors from "../data/directors";
-// Home.jsx
+export default function Home({ movies = [] }) {
+   if (!movies || movies.length === 0) return <p>No movies available</p>;
 
-import styles from './Home.module.css';
-import MovieCard from '../components/MovieCard';
-
-
-
-export default function Home() {
   return (
     <section>
       <h1>Home Page</h1>
-      {movies.map(movie => (
-        <MovieCard key={movie.id} movie={movie} />
-      ))}
+      {movies.length > 0 ? (
+        movies.map((movie) => (
+          <MovieCard
+            key={movie.id}
+            id={movie.id}
+            title={movie.title}
+            time={movie.time}
+            genres={movie.genres} // Must exist and be an array
+          />
+        ))
+      ) : (
+        <p>No movies available</p>
+      )}
     </section>
   );
 }
-import React from 'react';
